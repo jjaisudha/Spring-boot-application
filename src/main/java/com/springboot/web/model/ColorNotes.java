@@ -9,6 +9,9 @@ public class ColorNotes {
     private Date targetDate;
     private boolean isDone;
 
+    public ColorNotes() {
+    	super();
+    }
     
     public ColorNotes(int id, String user, String desc, Date targetDate,
             boolean isDone) {
