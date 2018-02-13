@@ -3,6 +3,10 @@ package com.springboot.web.controller;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
+
+import org.omg.CosNaming.Binding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,9 +33,10 @@ public class ColorNotesController {
 		model.put("notes", colornotesService.retrieveColorNotess((String) model.get("name")));
 		return "list-colornotes";		
 		}
+	//Bean to form mapping by setting the model attribute in the server side and then consuming them by using component bean
 	@RequestMapping(value="/addColorNotes", method = RequestMethod.GET)
 	public String showAddTodoPage(ModelMap model){
-		model.addAttribute("colorNotes", new ColorNotes(0,(String) model.get("name"),"",new Date(),false));
+		model.addAttribute("colorNotes", new ColorNotes(0,(String) model.get("name"),"Default desc",new Date(),false));
 		return "colornotes";
 	}
 	@RequestMapping(value="/deletecolorNotes", method = RequestMethod.GET)
@@ -39,12 +44,18 @@ public class ColorNotesController {
 		colornotesService.deleteColorNotes(id);
 		return "redirect:/list-colorNotes";	
 	}
+	@RequestMapping(value="/udpatecolorNotes", method = RequestMethod.GET)
+	public String showupdateTodoPage(ModelMap model,@RequestParam int id){
+		colornotesService.retrieveColorNotesbyid(id);
+		return "redirect:/list-colorNotes";	
+	}
 	@RequestMapping(value = "/addColorNotes", method= RequestMethod.POST)
-   	public String addColorNotes(ModelMap model,ColorNotes colorNotes)	 {
-		colornotesService.addColorNotes((String) model.get("name"),colorNotes.getDesc(),new Date(),false);
-		return "redirect:/list-colorNotes";		
+   	public String addColorNotes(ModelMap model,@Valid ColorNotes colorNotes,BindingResult  result)	 {
+		if (result.hasErrors()) {
+			return "colornotes";
 		}
-	
-	
+					colornotesService.addColorNotes((String) model.get("name"),colorNotes.getDesc(),new Date(),false);
+				return "redirect:/list-colorNotes";	
+		}	
 	
 	}

@@ -2,9 +2,12 @@ package com.springboot.web.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 public class ColorNotes {
     private int id;
     private String user;
+    @Size(min=10, message="Please enter at least 10 character")
     private String desc;
     private Date targetDate;
     private boolean isDone;

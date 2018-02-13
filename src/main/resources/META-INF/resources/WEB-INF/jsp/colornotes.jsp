@@ -9,7 +9,8 @@
 <form:form method= "post" commandName="colorNotes">
 <fieldset class="form-group">
 <form:label path="desc">Description :</form:label>
-<form:input path="desc" name="description" type="text" class ="form-control" required="required"/> 
+<form:input path="desc" name="description" type="text" class ="form-control" required="required"/>
+<form:errors path="desc" cssClass="text-warning"/> 
  </fieldset>
  
 	<button type="submit" class="btn btn-success">Add</button>	

@@ -33,6 +33,17 @@ public class ColorNotesService {
         }
         return filteredColorNotess;
     }
+    public ColorNotes retrieveColorNotesbyid(int id) {
+        List<ColorNotes> filteredColorNotess = new ArrayList<ColorNotes>();
+        for (ColorNotes colorNotes : ColorNotess) {
+            if (colorNotes.getId()== id) {
+            	 return colorNotes;
+            }
+           
+        }
+        return null;
+    }
+
 
     public void addColorNotes(String name, String desc, Date targetDate,
             boolean isDone) {
