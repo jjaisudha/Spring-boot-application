@@ -1,3 +1,5 @@
+<%@ include file="header.jspf" %>
+<%@ include file="navigation.jspf" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
@@ -39,3 +41,4 @@
       </form>
    </body>
 </html>
+<%@ include file="footer.jspf" %>

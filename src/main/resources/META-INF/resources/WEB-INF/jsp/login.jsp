@@ -1,3 +1,5 @@
+<%@ include file="header.jspf" %>
+<%@ include file="navigation.jspf" %>
 <html>
    <head>
       <title>Spring-Boot-My first sample </title>
