@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.validator.internal.engine.messageinterpolation.parser.TokenCollector;
 import org.springframework.stereotype.Service;
 
 import com.springboot.web.model.ColorNotes;
@@ -37,6 +38,7 @@ public class ColorNotesService {
         List<ColorNotes> filteredColorNotess = new ArrayList<ColorNotes>();
         for (ColorNotes colorNotes : ColorNotess) {
             if (colorNotes.getId()== id) {
+            	 filteredColorNotess.add(colorNotes);
             	 return colorNotes;
             }
            
@@ -48,6 +50,13 @@ public class ColorNotesService {
     public void addColorNotes(String name, String desc, Date targetDate,
             boolean isDone) {
         ColorNotess.add(new ColorNotes(++ColorNotesCount, name, desc, targetDate, isDone));
+    }
+    
+    
+    
+    public void  updateTodo(ColorNotes cnotes) {
+    	ColorNotess.remove(cnotes);
+    	ColorNotess.add(cnotes);
     }
 
     public void deleteColorNotes(int id) {
